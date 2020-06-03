@@ -1,0 +1,7 @@
+numpy
+scipy
+ndjson
+pillow
+cairocffi
+scikit-image
+imageio
