@@ -25,8 +25,10 @@ class BaseModel:
         self.optimizer = tf.optimizers.Adam(learning_rate=lr)
 
         if n_classes == 2:
+            self.num_latent_gps = 1
             self.liklihood = gpflow.likelihoods.Bernoulli()
         else:
+            self.num_latent_gps = n_classes
             self.liklihood = gpflow.likelihoods.Softmax(n_classes)
 
         self.model = None
@@ -67,7 +69,9 @@ class BaseModel:
         test_iter = iter(test_dataset.batch(minibatch_size))
 
         if self.n_classes:
-            acc = (self.model.predict_y(x)[0] > 0.5).numpy().astype("float") == y
+            acc = []
+            for batch_x, batch_y in test_iter:
+                acc.append(np.mean((self.model.predict_y(batch_x)[0] > 0.5).numpy().astype("float") == batch_y))
         else:
             acc = []
             for batch_x, batch_y in test_iter:

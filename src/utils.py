@@ -51,4 +51,9 @@ def load_dataset(npy_file_path, train_n=-1, test_n=-1):
         x_test = img_arr[test_random_ids, :] if x_test is None else np.concatenate((x_test, img_arr[test_random_ids, :]))
         y_test = np.array([i] * test_n) if y_test is None else np.concatenate((y_test, np.array([i] * test_n)))
 
+    x_train = x_train / 255
+    x_test = x_test / 255
+
+    y_train = y_train.reshape((-1, 1))
+    y_test = y_test.reshape((-1, 1))
     return x_train, y_train, x_test, y_test

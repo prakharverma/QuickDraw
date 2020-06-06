@@ -53,7 +53,7 @@ class ConvGP(BaseModel):
             conv_k,
             self.liklihood,
             conv_f,
-            num_latent_gps=n_classes,
+            num_latent_gps=self.num_latent_gps,
             num_data=x.shape[0],
         )
 
