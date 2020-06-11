@@ -4,3 +4,5 @@ numpy==1.17.0
 cairocffi==1.1.0
 ndjson==0.3.1
 Pillow==6.1.0
+gpflow==2.0.1
+tensorflow-gpu==2.1.0

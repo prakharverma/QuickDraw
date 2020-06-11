@@ -22,6 +22,9 @@ if __name__ == '__main__':
     # TODO : Should be adaptive
     line_diameter = padding = 12  # int(0.57 * out_shape)
 
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
     for data_file in os.listdir(data_dir):
         if ".ndjson" not in data_file:
             continue
